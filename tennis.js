@@ -26,7 +26,7 @@ function Tennis(playerA, playerB){
     this.deuce = function() {
         return this.player.A.score === 40 && this.player.B.score === 40;
     };
-    this.bathEqual = function() {
+    this.bothEqual = function() {
         return (this.player.A.score ===  this.player.B.score)&&!this.deuce();
     };
     this.playerAWinGame = function() {
@@ -43,7 +43,7 @@ function Tennis(playerA, playerB){
     };
     this.judge = function() {
         var score = this.textScore[this.getScore("A")]+" - "+this.textScore[this.getScore("B")];
-        if(this.bathEqual()){
+        if(this.bothEqual()){
             score = this.textScore[this.getScore("A")]+" - ALL";
         }else if(this.deuce()){
             score = "DEUCE";
