@@ -13,7 +13,7 @@ function Player() {
 }
 
 function Tennis(playerA, playerB){
-    var _rules = [new Duece()];
+    var _rules = [new Deuce()];
     this.player = {
         A: playerA,
         B: playerB,
@@ -67,7 +67,7 @@ function Tennis(playerA, playerB){
     };
 };
 
-function Duece() {
+function Deuce() {
     this.match = function(scoreA, scoreB) {
         return (scoreA === 40) && (scoreB === 40);
     };
