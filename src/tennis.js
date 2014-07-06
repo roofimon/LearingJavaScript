@@ -15,7 +15,8 @@ function Player() {
 function Tennis(playerA, playerB){
     var _rules = [
         new BothEqual(new Deuce()),
-        new Deuce()
+        new Deuce(),
+        new AWin()
     ];
     this.player = {
         A: playerA,
@@ -37,12 +38,6 @@ function Tennis(playerA, playerB){
     this.getScore = function(name) {
         return this.player[name].score;
     };
-    this.playerAWinGame = function() {
-        return (this.player.A.score === 55)&&(this.player.B.score < 40);
-    };
-    this.playerAWinGameFromDeuce = function() {
-        return (this.player.A.score === 70)&&(this.player.B.score === 40);
-    };
     this.playerBWinGame = function() {
         return (this.player.B.score === 55)&&(this.player.A.score < 40);
     };
@@ -55,8 +50,8 @@ function Tennis(playerA, playerB){
             score = _rules[0].toString();
         }else if(_rules[1].match(this.getScore("A"), this.getScore("B"))){
             score = _rules[1].toString();
-        }else if(this.playerAWinGame()||this.playerAWinGameFromDeuce()){
-            score = "PLAYER A WIN";
+        }else if(_rules[2].match(this.getScore("A"), this.getScore("B"))){
+            score = _rules[2].toString();
         }else if(this.playerBWinGame()||this.playerBWinGameFromDeuce()){
             score = "PLAYER B WIN";
         }
@@ -64,6 +59,20 @@ function Tennis(playerA, playerB){
     };
 };
 
+function AWin() {
+    var _win = function(scoreA, scoreB) {
+        return (scoreA === 55) && (scoreB < 40)
+    };
+    var _winFromDuece = function(scoreA, scoreB) {
+        return (scoreA === 70)&&(scoreB === 40);
+    };
+    this.match = function(scoreA, scoreB) {
+        return _win(scoreA, scoreB) || _winFromDuece(scoreA, scoreB);
+    };
+    this.toString = function() {
+        return 'PLAYER A WIN';
+    };
+}
 function BothEqual(duece) {
     var _rule = duece,
         _score;
