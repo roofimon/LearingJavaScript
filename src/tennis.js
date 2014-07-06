@@ -13,6 +13,7 @@ function Player() {
 }
 
 function Tennis(playerA, playerB){
+    var _rules = [new Duece()];
     this.player = {
         A: playerA,
         B: playerB,
@@ -55,8 +56,8 @@ function Tennis(playerA, playerB){
         var score = this.textScore[this.getScore("A")]+" - "+this.textScore[this.getScore("B")];
         if(this.bothEqual()){
             score = this.textScore[this.getScore("A")]+" - ALL";
-        }else if(this.deuce()){
-            score = "DEUCE";
+        }else if(_rules[0].match(this.getScore("A"), this.getScore("B"))){
+            score = _rules[0].toString();
         }else if(this.playerAWinGame()||this.playerAWinGameFromDeuce()){
             score = "PLAYER A WIN";
         }else if(this.playerBWinGame()||this.playerBWinGameFromDeuce()){
@@ -65,3 +66,13 @@ function Tennis(playerA, playerB){
         return score;
     };
 };
+
+function Duece() {
+    this.match = function(scoreA, scoreB) {
+        return (scoreA === 40) && (scoreB === 40);
+    };
+
+    this.toString = function() {
+        return 'DEUCE';
+    };
+}
