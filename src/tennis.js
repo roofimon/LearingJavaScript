@@ -1,3 +1,12 @@
+angular.module('TennisApp', [
+    'TennisApp.controllers'
+]);
+
+angular.module('TennisApp.controllers', [])
+.controller('TennisController', function($scope) {
+    $scope.messages = ["French Open", "US Open"];
+});
+
 function Player() {
     this.score = 0;
 }

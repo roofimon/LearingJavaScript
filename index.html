@@ -1,16 +1,6 @@
 <head>
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
-    <script type="text/javascript">
-        angular.module('TennisApp', [
-            'TennisApp.controllers'
-        ]);
-
-        angular.module('TennisApp.controllers', [])
-        .controller('TennisController', function($scope) {
-            console.log("Called Controller");
-            $scope.messages = ["French Open", "US Open"];
-        });
-    </script>
+    <script type="text/javascript" src="/src/tennis.js"></script>    
 </head>
 <body ng-app="TennisApp" ng-controller="TennisController">
     <div ng-repeat="message in messages">
