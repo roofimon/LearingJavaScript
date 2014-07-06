@@ -41,15 +41,16 @@ function Tennis(playerA, playerB){
     };
     this.judge = function() {
         var score = this.textScore[this.getScore("A")]+" - "+this.textScore[this.getScore("B")];
-        if(_rules[0].match(this.getScore("A"), this.getScore("B"))){
-            score = _rules[0].toString();
-        }else if(_rules[1].match(this.getScore("A"), this.getScore("B"))){
-            score = _rules[1].toString();
-        }else if(_rules[2].match(this.getScore("A"), this.getScore("B"))){
-            score = _rules[2].toString();
-        }else if(_rules[3].match(this.getScore("A"), this.getScore("B"))){
-            score = _rules[3].toString();
-        }
+        var scoreA = this.getScore("A"),
+            scoreB = this.getScore("B");
+
+        _rules.forEach(function(rule) {
+            if (rule.match(scoreA, scoreB)) {
+                score = rule.toString();
+                return;
+            }
+        });
+
         return score;
     };
 };
