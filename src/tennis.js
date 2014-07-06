@@ -13,7 +13,10 @@ function Player() {
 }
 
 function Tennis(playerA, playerB){
-    var _rules = [new Deuce()];
+    var _rules = [
+        new BothEqual(new Deuce()),
+        new Deuce()
+    ];
     this.player = {
         A: playerA,
         B: playerB,
@@ -34,12 +37,6 @@ function Tennis(playerA, playerB){
     this.getScore = function(name) {
         return this.player[name].score;
     };
-    this.deuce = function() {
-        return this.player.A.score === 40 && this.player.B.score === 40;
-    };
-    this.bothEqual = function() {
-        return (this.player.A.score ===  this.player.B.score)&&!this.deuce();
-    };
     this.playerAWinGame = function() {
         return (this.player.A.score === 55)&&(this.player.B.score < 40);
     };
@@ -54,10 +51,10 @@ function Tennis(playerA, playerB){
     };
     this.judge = function() {
         var score = this.textScore[this.getScore("A")]+" - "+this.textScore[this.getScore("B")];
-        if(this.bothEqual()){
-            score = this.textScore[this.getScore("A")]+" - ALL";
-        }else if(_rules[0].match(this.getScore("A"), this.getScore("B"))){
+        if(_rules[0].match(this.getScore("A"), this.getScore("B"))){
             score = _rules[0].toString();
+        }else if(_rules[1].match(this.getScore("A"), this.getScore("B"))){
+            score = _rules[1].toString();
         }else if(this.playerAWinGame()||this.playerAWinGameFromDeuce()){
             score = "PLAYER A WIN";
         }else if(this.playerBWinGame()||this.playerBWinGameFromDeuce()){
@@ -66,6 +63,30 @@ function Tennis(playerA, playerB){
         return score;
     };
 };
+
+function BothEqual(duece) {
+    var _rule = duece,
+        _score;
+
+    var textScore = {
+        0:  "LOVE",
+        15: "FIFTEEN",
+        30: "THIRTY",
+        40: "FORTY",
+    };
+
+    this.match = function(scoreA, scoreB) {
+        var _match = (scoreA === scoreB) && !_rule.match(scoreA, scoreB);
+        if (_match) {
+            _score = scoreA;
+        }
+        return _match;
+    };
+
+    this.toString = function() {
+        return textScore[_score] + ' - ALL';
+    };
+}
 
 function Deuce() {
     this.match = function(scoreA, scoreB) {
