@@ -17,4 +17,9 @@ describe('TennisController', function() {
         expect($scope.messages[0]).toEqual("French Open");
         expect($scope.messages[1]).toEqual("US Open");
     });
+
+    it('should has player A and plaer B', function(){
+        expect($scope.tennis.player.A.score).toEqual(0);
+        expect($scope.tennis.player.B.score).toEqual(0);
+    });
 });
