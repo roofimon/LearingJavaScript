@@ -1,8 +1,4 @@
-angular.module('TennisApp', [
-    'TennisApp.controllers'
-]);
-
-angular.module('TennisApp.controllers', [])
+angular.module('TennisApp', [])
 .controller('TennisController', function($scope) {
     $scope.messages = ["French Open", "US Open"];
     $scope.tennis = new Tennis(new Player(), new Player());
