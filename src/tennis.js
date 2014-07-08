@@ -49,11 +49,11 @@ function Tennis(playerA, playerB){
 
         return score;
     };
-};
+}
 
 function BWin() {
     var _win = function(scoreA, scoreB) {
-        return (scoreB === 55) && (scoreA < 40)
+        return (scoreB === 55) && (scoreA < 40);
     };
     var _winFromDuece = function(scoreA, scoreB) {
         return (scoreB === 70)&&(scoreA === 40);
@@ -64,11 +64,11 @@ function BWin() {
     this.toString = function() {
         return 'PLAYER B WIN';
     };
-};
+}
 
 function AWin() {
     var _win = function(scoreA, scoreB) {
-        return (scoreA === 55) && (scoreB < 40)
+        return (scoreA === 55) && (scoreB < 40);
     };
     var _winFromDuece = function(scoreA, scoreB) {
         return (scoreA === 70)&&(scoreB === 40);
