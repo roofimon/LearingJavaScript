@@ -1,5 +1,14 @@
 angular.module('TennisApp', [])
-.controller('TennisController', function($scope) {
+.controller('TennisController', function($scope, $http) {
+    $http.get("http://localhost:8888/wines").then(
+        function(results) {
+            console.log("success");
+            console.log(results.data[0].title);
+        },
+        function(results) {
+            console.log("error");
+        }
+    );
     $scope.messages = ["French Open", "US Open"];
     $scope.tennis = new Tennis(new Player(), new Player());
 });
