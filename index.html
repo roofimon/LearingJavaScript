@@ -50,11 +50,16 @@
             </div>
           </div>
 
+          <div class="alert alert-warning alert-dismissible" role="alert" ng-show="hasError" ng-cloak>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </div>
+
           <div class="inner cover">
-            <h1 class="cover-heading" >{{wine.title}}</h1>
+            <h1 class="cover-heading" ng-cloak>{{wine.title}}</h1>
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+              <a href="#" class="btn btn-lg btn-default" ng-click="echo()">Learn more</a>
             </p>
           </div>
 
@@ -69,7 +74,7 @@
       </div>
 
     </div>
-
+    </body>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
