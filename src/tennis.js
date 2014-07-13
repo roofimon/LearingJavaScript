@@ -2,28 +2,31 @@ var app = angular.module('TennisApp', []);
 
 app.service('wineService', function($http){
 
-  this.echo = function(successCallback, errorCallback) {
-    $http.get("http://localhost:8888/wines").then(
-    function(results) {
-      successCallback(results.data[0]);
-    },
-    function(results) {
-      errorCallback(results);
-    });
-  };
+    this.echo = function(successCallback, errorCallback) {
+        $http.get("http://localhost:8888/wines").then(
+        function(results) {
+            successCallback(results.data[0]);
+        },
+        function(results) {
+            errorCallback(results);
+        });
+    };
 
 });
 
 app.controller('TennisController', function($scope, wineService) {
     $scope.hasError = false;
     $scope.wine = {"title": "Waiting for a punch line"};
+
     $scope.successGetWinesCallback = function(data) {
+        console.log("success callback");
         $scope.wine = data;
     };
 
     $scope.errorGetWinesCallback = function(data) {
         $scope.hasError = true;
     };
+
     $scope.echo = function() {
         wineService.echo($scope.successGetWinesCallback, $scope.errorGetWinesCallback);
     };

@@ -13,13 +13,8 @@ describe('TennisController', function() {
     };
 
     it('should declare TennisController', function(){
-        expect($scope.messages.length).toEqual(2);
-        expect($scope.messages[0]).toEqual("French Open");
-        expect($scope.messages[1]).toEqual("US Open");
+        expect($scope.hasError).toEqual(false);
+        expect($scope.wine.title).toEqual("Waiting for a punch line");
     });
 
-    it('should has player A and plaer B', function(){
-        expect($scope.tennis.player.A.score).toEqual(0);
-        expect($scope.tennis.player.B.score).toEqual(0);
-    });
 });
